@@ -3,6 +3,7 @@ import Banner from "../Banner/Banner";
 import Order from "../Order/Order";
 import Phone from "../Phone/Phone";
 import PopularMenuOne from "../PopularMenu/PopularMenuOne";
+import Recommend from "../Recommend/Recommend";
 
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
             {/* <BistroBoss></BistroBoss> */}
             <PopularMenuOne></PopularMenuOne>
             <Phone></Phone>
+            <Recommend></Recommend>
         </div>
     );
 };
