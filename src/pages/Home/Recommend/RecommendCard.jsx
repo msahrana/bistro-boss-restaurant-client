@@ -4,12 +4,12 @@ const RecommendCard = ({ item }) => {
   const { image, recipe, category } = item;
 
   return (
-    <div className="flex">
-        <div className="card bg-base-100 shadow-xl">
-            <figure className="px-10 pt-10">
+    <div>
+        <div className="card w-96 bg-[#F3F3F3]">
+            <figure>
                 <img
                 src={image}
-                alt="Shoes"
+                alt=""
                 className="w-full"
                 />
             </figure>

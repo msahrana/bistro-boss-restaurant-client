@@ -21,7 +21,7 @@ const Recommend = () => {
             subHeading={'---Should Try---'}
             heading={'CHEF RECOMMENDS'}
             ></SectionTitle>
-            <div>
+            <div className="grid lg:grid-cols-3 px-24 my-6">
                 {
                     menus.slice(0,3).map(item => <RecommendCard key={item._id} item={item}></RecommendCard>)
                 }
