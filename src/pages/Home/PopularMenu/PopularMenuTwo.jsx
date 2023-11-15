@@ -1,10 +1,14 @@
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 
 const PopularMenuTwo = () => {
     return (
-        <div>
-            
-        </div>
+        <section>
+            <SectionTitle
+            subHeading={'---Check it out---'}
+            heading={'OUR POPULAR MENU'}
+            ></SectionTitle>
+        </section>
     );
 };
 
