@@ -6,13 +6,7 @@ const RecommendCard = ({ item }) => {
   return (
     <div>
         <div className="card w-96 bg-[#F3F3F3]">
-            <figure>
-                <img
-                src={image}
-                alt=""
-                className="w-full"
-                />
-            </figure>
+            <figure><img src={image} alt="" className="w-full" /></figure>
             <div className="card-body items-center text-center">
                 <h2 className="card-title">{category}</h2>
                 <p>{recipe}</p>
