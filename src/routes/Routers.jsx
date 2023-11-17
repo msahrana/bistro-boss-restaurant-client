@@ -22,10 +22,10 @@ import OurShop from "../pages/OurShop/OurShop";
           path: '/ourMenu',
           element: <OurMenu></OurMenu>
         },
-        {
-          path: '/ourShop',
-          element: <OurShop></OurShop>
-        },
+        // {
+        //   path: '/ourShop',
+        //   element: <OurShop></OurShop>
+        // },
         {
           path: '/ourShop/:category',
           element: <OurShop></OurShop>
