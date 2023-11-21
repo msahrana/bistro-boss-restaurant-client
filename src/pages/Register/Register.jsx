@@ -4,9 +4,12 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 
 const Register = () => {
+  const axiosPublic = useAxiosPublic()
   const {register, handleSubmit, reset, formState: { errors } } = useForm()
   const { createUser, updateUserProfile } = useContext(AuthContext)
   const navigate = useNavigate()
@@ -19,10 +22,19 @@ const Register = () => {
         console.log(loggedUser)
         updateUserProfile(data.name, data.photoURL)
         .then(()=>{
-          console.log('User profile info updated')
-          reset()
-          Swal.fire("User Created Successfully!");
-          navigate('/')
+          const userInfo = {
+            name: data.name, 
+            email: data.email
+          }
+          axiosPublic.post('/users', userInfo)
+          .then(res => {
+            if(res.data.insertedId){
+              console.log('user added to the database')
+              reset()
+              Swal.fire("User Created Successfully!");
+              navigate('/')
+            }
+          })
         })
         .catch(error => console.log(error))
       })
@@ -84,9 +96,11 @@ const Register = () => {
                 <button className="btn bg-yellow-500">Sign Up</button>
               </div>
             </form>
-            <p className='text-center text-yellow-500 mb-5'><small>Already Registered? <Link className='font-bold' to='/login'>Go to Login</Link> </small></p>
+            <p className='text-center text-yellow-500 mb-2'><small>Already Registered? <Link className='font-bold' to='/login'>Go to Login</Link> </small></p>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
+        
     </div>
         </>
     );
