@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../provider/AuthProvider";
+import { FaShoppingCart } from 'react-icons/fa';
+
 
 
 const Navbar = () => {
@@ -19,15 +21,12 @@ const Navbar = () => {
     <li><Link to='/ourMenu'>Our Menu</Link></li>
     <li><Link to='/ourShop/salad'>Our Shop</Link></li>
     <li><Link to='/secret'>Secret</Link></li>
-    {
-      user ? <>
-      <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
-      <span>{user?.displayName}</span>
-      <button onClick={handleLogOut} className="btn btn-active btn-secondary btn-sm">LogOut</button>
-      </> : <>
-      <li><Link to='/login'>Login</Link></li>
-      </>
-    }
+    <li><Link to='/'>
+    <button className="btn btn-sm">
+    <FaShoppingCart></FaShoppingCart>
+      <div className="badge badge-secondary">+0</div>
+    </button>
+      </Link></li>
     </>
 
   return (
@@ -65,8 +64,18 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn bg-transparent text-white">Login</a>
-      </div>
+    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">  <img src={user?.photoURL}/> </div>  
+      </label>
+      <div className="bg-red-500 mx-2 p-2 rounded">{user?.displayName}</div>
+        {
+         user ? 
+         <button onClick={handleLogOut} className="btn btn-secondary w-28 h-10">Sign Out</button>
+         : <Link to='/login'>
+             <button className="btn btn-secondary w-[140px] h-[44px]">Login</button>
+           </Link>             
+        }
+    </div> 
     </div>
   );
 };
