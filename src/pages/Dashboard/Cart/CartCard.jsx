@@ -18,11 +18,11 @@ const CartCard = ({ item, index, refetch }) => {
             if (result.isConfirmed) {
               axiosSecure.delete(`/carts/${id}`)
               .then(res => {
-                if (res.data.deletedCount) {
+                if (res.data.deletedCount > 0) {
                     refetch()
                     Swal.fire({
                         title: "Deleted!",
-                        text: "Your food item has been deleted.",
+                        text: "Your food item has been deleted successfully.",
                         icon: "success"
                       });
                 }
