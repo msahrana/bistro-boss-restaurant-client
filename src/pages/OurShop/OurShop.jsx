@@ -34,7 +34,7 @@ const OurShop = () => {
           <Tab>Pizza</Tab>
           <Tab>Soups</Tab>
           <Tab>Desserts</Tab>
-          <Tab>drinks</Tab>
+          <Tab>Drinks</Tab>
         </TabList>
         <TabPanel>
            <OurShopTab items={salad}></OurShopTab>
