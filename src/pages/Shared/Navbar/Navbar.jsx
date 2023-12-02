@@ -66,16 +66,20 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">  <img src={user?.photoURL}/> </div>  
-      </label>
-      <div className="bg-red-500 mx-2 p-2 rounded">{user?.displayName}</div>
+    
         {
          user ? 
-         <button onClick={handleLogOut} className="btn btn-secondary w-28 h-10">Sign Out</button>
-         : <Link to='/login'>
-             <button className="btn btn-secondary w-[140px] h-[44px]">Login</button>
-           </Link>             
+         <>
+         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+          <div className="w-10 rounded-full">  <img src={user?.photoURL}/> </div>  
+        </label>
+        <div className="bg-red-500 mx-2 p-2 rounded">{user?.displayName}</div>
+        <button onClick={handleLogOut} className="btn btn-secondary w-28 h-10">Sign Out</button>
+         </>
+         : 
+        <Link to='/login'>
+            <button className="btn btn-secondary w-[140px] h-[44px]">Login</button>
+        </Link>             
         }
     </div> 
     </div>
