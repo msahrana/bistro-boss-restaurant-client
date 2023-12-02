@@ -13,6 +13,7 @@ import Cart from "../pages/Dashboard/Cart/Cart";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddItems from "../pages/Dashboard/AddItems/AddItems";
 import AdminRoute from "./AdminRoute";
+import ContactUs from "../pages/Home/ContactUs/ContactUs";
 
 
   export const router = createBrowserRouter([
@@ -29,10 +30,10 @@ import AdminRoute from "./AdminRoute";
           path: '/ourMenu',
           element: <OurMenu></OurMenu>
         },
-        // {
-        //   path: '/ourShop',
-        //   element: <OurShop></OurShop>
-        // },
+        {
+          path: '/contactUs',
+          element: <ContactUs></ContactUs>
+        },
         {
           path: '/ourShop/:category',
           element: <OurShop></OurShop>

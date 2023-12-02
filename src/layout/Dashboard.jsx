@@ -38,7 +38,7 @@ const Dashboard = () => {
                     <li><NavLink to="/"> <FaHome></FaHome>Home</NavLink></li>
                     <li><NavLink to="/ourMenu"> <FaList></FaList>Our Menu</NavLink></li>
                     <li><NavLink to="/ourShop/salad"> <FaShip></FaShip> Our Shop</NavLink></li>
-                    <li><NavLink to="/contact"> <FaEnvelope></FaEnvelope> Contact</NavLink></li>
+                    <li><NavLink to="/contactUs"> <FaEnvelope></FaEnvelope> Contact</NavLink></li>
                 </ul>
             </div>
             <div className="flex-1 p-8 mx-24 bg-[#FFF]">
