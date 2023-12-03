@@ -28,12 +28,12 @@ const AllUsers = () => {
           axiosSecure.patch(`/users/admin/${user._id}`)
           .then(res => {
             if (res.data.modifiedCount > 0) {
-                refetch()
-                Swal.fire({
-                    title: "Updated!",
-                    text: "User has been updated successfully.",
-                    icon: "success"
-                  });
+              refetch()
+              Swal.fire({
+                title: "Updated!",
+                text: "User has been updated successfully.",
+                icon: "success"
+              });
             }
           })
         }

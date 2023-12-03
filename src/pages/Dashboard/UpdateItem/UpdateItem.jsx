@@ -1,15 +1,16 @@
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-import { FaUtensils } from "react-icons/fa";
+import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
-const AddItems = () => {
+const UpdateItem = () => {
   const { register, handleSubmit, reset } = useForm();
+  const { name, category, recipe, price, _id } = useLoaderData()
   const axiosPublic = useAxiosPublic()
   const axiosSecure = useAxiosSecure()
 
@@ -29,27 +30,25 @@ const AddItems = () => {
         price: parseFloat(data.price),
         image: res.data.data.display_url
       }
-      const menuRes = await axiosSecure.post('/menu', menuItem)
+      const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem)
       console.log(menuRes.data)
-      if(menuRes.data.insertedId){
+      if(menuRes.data.modifiedCount > 0){
         reset();
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: `${data.name} is added to the menu`,
+          title: `${data.name} is updated to the menu`,
           showConfirmButton: false,
           timer: 1500
         });
       }
     }
-    console.log(res.data)
   };
 
   return (
     <section>
       <SectionTitle
-        subHeading={"---What's new?---"}
-        heading={"ADD AN ITEM"}
+        heading={"UPDATE ITEM"}
       ></SectionTitle>
       <div className="px-24">
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -58,7 +57,8 @@ const AddItems = () => {
               <span className="label-text font-bold">Recipe Name*</span>
             </label>
             <input
-              type="text"
+              type="text" 
+              defaultValue={name}
               placeholder="Recipe Name"
               {...register("name", {required: true})}
               className="input input-bordered w-full"
@@ -70,7 +70,7 @@ const AddItems = () => {
               <label className="label">
                 <span className="label-text font-bold">Category*</span>
               </label>
-              <select defaultValue={'default'}
+              <select defaultValue={category}
                 {...register("category", {required: true})}
                 className="select select-bordered w-full">
                 <option disabled value={'default'}>Select a Category</option>
@@ -87,7 +87,7 @@ const AddItems = () => {
                 <span className="label-text font-bold">Price*</span>
               </label>
               <input
-                type="number"
+                type="number" defaultValue={price}
                 placeholder="Price"
                 {...register("price", {required: true})}
                 className="input input-bordered w-full"
@@ -99,7 +99,7 @@ const AddItems = () => {
               <label className="label">
                 <span className="label-text font-bold">Recipe Details</span>
               </label>
-              <textarea 
+              <textarea defaultValue={recipe}
                 {...register("recipe", {required: true})}
                 className="textarea textarea-bordered h-24"
                 placeholder="Recipe Details"
@@ -108,11 +108,11 @@ const AddItems = () => {
             <div className="form-control w-full my-6">
             <input {...register("image", {required: true})} type="file" className="file-input file-input-bordered file-input-primary w-full max-w-xs" />
             </div>
-          <button className="btn bg-[#835D23] btn-sm text-white">Add Item<FaUtensils></FaUtensils></button>
+          <button className="btn bg-[#835D23] btn-sm text-white">Update Menu Item</button>
         </form>
       </div>
     </section>
   );
 };
 
-export default AddItems;
+export default UpdateItem;
