@@ -6,7 +6,6 @@ import Login from "../pages/Login/Login";
 import OurMenu from "../pages/Menu/Menu/OurMenu";
 import OurShop from "../pages/OurShop/OurShop";
 import PrivateRoute from "./PrivateRoute";
-import Secret from "../pages/Shared/Secret/Secret";
 import Register from "../pages/Register/Register";
 import Dashboard from "../layout/Dashboard";
 import Cart from "../pages/Dashboard/Cart/Cart";
@@ -20,6 +19,9 @@ import MyBookings from "../pages/Dashboard/MyBookings/MyBookings";
 import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import UserHome from "../pages/Dashboard/UserHome/UserHome";
+import AddReview from "../pages/Dashboard/AddReview/AddReview";
+import Reservation from "../pages/Dashboard/Reservation/Reservation";
 
 
   export const router = createBrowserRouter([
@@ -52,10 +54,6 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
           path: '/register',
           element: <Register></Register>
         },
-        {
-          path: '/secret',
-          element: <PrivateRoute><Secret></Secret></PrivateRoute>
-        }
       ]
     },
     {
@@ -63,6 +61,10 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
       element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children: [
         // normal user route
+        {
+          path: 'userHome',
+          element: <UserHome></UserHome>
+        },
         {
           path: 'cart',
           element: <Cart></Cart>
@@ -74,6 +76,18 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
         {
           path: 'paymentHistory',
           element: <PaymentHistory></PaymentHistory>
+        },
+        {
+          path: 'myBookings',
+          element: <MyBookings></MyBookings>
+        },
+        {
+          path: 'review',
+          element: <AddReview></AddReview>
+        },
+        {
+          path: 'reservation',
+          element: <Reservation></Reservation>
         },
         // admin user route
         {
