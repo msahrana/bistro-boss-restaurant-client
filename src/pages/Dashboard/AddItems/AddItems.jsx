@@ -15,19 +15,20 @@ const AddItems = () => {
 
   const onSubmit = async(data) => {
     console.log(data);
-    const imageFile = {image: data.image[0]}
-    const res = await axiosPublic.post(image_hosting_api, imageFile, {
-      headers: {
-        'content-type' : 'multipart/form-data'
-      }
-    })
-    if(res.data.success){
+    // const imageFile = {image: data.image[0]}
+    // const res = await axiosPublic.post(image_hosting_api, imageFile, {
+    //   headers: {
+    //     'content-type' : 'multipart/form-data'
+    //   }
+    // })
+    // if(res.data.success){
       const menuItem = {
         name: data.name,
         category: data.category,
         recipe: data.recipe,
         price: parseFloat(data.price),
-        image: res.data.data.display_url
+        // image: res.data.data.display_url
+        image: "https://i.ibb.co/5k909zQ/female3.jpg"
       }
       const menuRes = await axiosSecure.post('/menu', menuItem)
       console.log(menuRes.data)
@@ -41,8 +42,8 @@ const AddItems = () => {
           timer: 1500
         });
       }
-    }
-    console.log(res.data)
+    // }
+    // console.log('with image url',res.data)
   };
 
   return (

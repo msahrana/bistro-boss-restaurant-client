@@ -9,7 +9,7 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const UpdateItem = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const { name, category, recipe, price, _id } = useLoaderData()
   const axiosPublic = useAxiosPublic()
   const axiosSecure = useAxiosSecure()
@@ -33,7 +33,7 @@ const UpdateItem = () => {
       const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem)
       console.log(menuRes.data)
       if(menuRes.data.modifiedCount > 0){
-        reset();
+        // reset();
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -43,6 +43,7 @@ const UpdateItem = () => {
         });
       }
     }
+    console.log('with image url',res.data)
   };
 
   return (
@@ -57,7 +58,7 @@ const UpdateItem = () => {
               <span className="label-text font-bold">Recipe Name*</span>
             </label>
             <input
-              type="text" 
+              type="text"
               defaultValue={name}
               placeholder="Recipe Name"
               {...register("name", {required: true})}
